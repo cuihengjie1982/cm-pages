@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>润迅·具身智能数据运营 · 行业交流与客户对接台账</title>
+<style>
+  :root{
+    --navy:#0e2f4f; --navy2:#155e8a; --teal:#0d9488; --bg:#f3f5f8;
+    --card:#ffffff; --line:#e6eaf0; --ink:#1c2733; --sub:#5b6b7c;
+    --p-max:#dc2626; --p-high:#ea580c; --p-mhigh:#d97706;
+    --p-mid:#2563eb; --p-mlow:#64748b; --p-low:#94a3b8; --p-tbd:#b45309;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg); color:var(--ink); font-size:14px; line-height:1.55;
+  }
+  /* ===== hero ===== */
+  .hero{
+    background:linear-gradient(120deg,var(--navy) 0%,var(--navy2) 55%,var(--teal) 130%);
+    color:#fff; padding:34px 24px 66px;
+  }
+  .hero-in{max-width:1380px;margin:0 auto}
+  .hero h1{font-size:26px;font-weight:700;letter-spacing:.5px}
+  .hero .meta{margin-top:8px;font-size:13px;opacity:.85;display:flex;flex-wrap:wrap;gap:14px}
+  .hero .meta span::before{content:"·";margin-right:8px;opacity:.6}
+  .hero .meta span:first-child::before{content:"";margin:0}
+  /* ===== stat cards ===== */
+  .wrap{max-width:1380px;margin:-42px auto 0;padding:0 24px 40px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .stat{
+    background:var(--card);border-radius:12px;padding:14px 16px;
+    box-shadow:0 1px 3px rgba(15,40,70,.08);border:1px solid var(--line);
+    text-decoration:none;color:inherit;display:block;transition:transform .12s;
+  }
+  .stat:hover{transform:translateY(-2px)}
+  .stat .num{font-size:26px;font-weight:700;color:var(--navy)}
+  .stat .num small{font-size:13px;font-weight:400;color:var(--sub);margin-left:2px}
+  .stat .lbl{font-size:12.5px;color:var(--sub);margin-top:2px}
+  .stat.hl{border-left:4px solid var(--teal)}
+  /* ===== nav ===== */
+  .nav{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+    padding:10px 24px;margin-top:20px;
+  }
+  .nav-in{max-width:1380px;margin:0 auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .nav a{
+    font-size:13px;color:var(--sub);text-decoration:none;padding:5px 12px;
+    border-radius:99px;border:1px solid transparent;white-space:nowrap;
+  }
+  .nav a:hover{color:var(--navy);background:#eef2f6}
+  .nav a b{font-weight:600;color:var(--navy2)}
+  .nav .sp{flex:1}
+  .search{
+    border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:13px;
+    width:220px;outline:none;background:#fff;color:var(--ink);
+  }
+  .search:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(13,148,136,.12)}
+  /* ===== activity ===== */
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    box-shadow:0 1px 3px rgba(15,40,70,.06);margin-top:22px;overflow:hidden;
+  }
+  .act-body{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 26px;padding:18px 22px}
+  .act-body .full{grid-column:1/-1}
+  .act-body .k{font-size:12px;color:var(--sub);margin-bottom:3px}
+  .act-body .v{font-size:13.5px}
+  .act-body .v b.big{font-size:17px;color:var(--navy)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chip{font-size:12px;background:#eef4f8;color:var(--navy2);border-radius:6px;padding:3px 8px}
+  /* ===== sections ===== */
+  .sec{margin-top:26px}
+  .sec-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .sec-h .bar{width:5px;height:20px;border-radius:3px;background:var(--teal)}
+  .sec-h h2{font-size:17px;font-weight:700;color:var(--navy)}
+  .sec-h .cnt{font-size:12px;background:#e8eef4;color:var(--navy2);border-radius:99px;padding:2px 10px}
+  .sec-h .src{font-size:12px;color:var(--sub);margin-left:auto}
+  .tbl-wrap{overflow-x:auto;border-radius:14px;border:1px solid var(--line);background:var(--card);box-shadow:0 1px 3px rgba(15,40,70,.06)}
+  table{border-collapse:collapse;width:100%;min-width:1080px}
+  thead th{
+    background:#f7f9fb;color:var(--sub);font-size:12px;font-weight:600;
+    text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap;
+  }
+  tbody td{
+    padding:10px 12px;border-bottom:1px solid #f0f3f6;vertical-align:top;font-size:13px;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#f8fbfd}
+  td.co{font-weight:600;color:var(--navy);width:13%}
+  td.who{width:9%}
+  td.who .t{color:var(--sub);font-size:12px}
+  td.tel{width:10%;white-space:nowrap}
+  td.tel a{color:var(--navy2);text-decoration:none;border-bottom:1px dashed #b8cad9}
+  td.tel a:hover{color:var(--teal)}
+  td.need{width:18%}
+  td.biz{width:22%;color:var(--sub)}
+  td.sug{width:22%}
+  td.pri{width:6%;white-space:nowrap}
+  .badge{
+    display:inline-block;border-radius:99px;padding:2px 9px;font-size:12px;font-weight:600;color:#fff;
+  }
+  .b-max{background:var(--p-max)} .b-high{background:var(--p-high)}
+  .b-mhigh{background:var(--p-mhigh)} .b-mid{background:var(--p-mid)}
+  .b-mlow{background:var(--p-mlow)} .b-low{background:var(--p-low)}
+  .b-tbd{background:#fff;color:var(--p-tbd);border:1px solid var(--p-tbd)}
+  .dim{color:#b6c0cb}
+  .empty{padding:26px;text-align:center;color:var(--sub);font-size:13px;display:none}
+  footer{
+    max-width:1380px;margin:34px auto 0;padding:16px 24px 30px;border-top:1px solid var(--line);
+    color:var(--sub);font-size:12px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+  @media print{
+    .nav,.search{display:none}
+    body{background:#fff}
+    .hero{padding:20px}
+    .wrap{margin-top:20px}
+    .card,.tbl-wrap{box-shadow:none;break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-in">
+    <h1>润迅·具身智能数据运营 · 行业交流与客户对接台账</h1>
+    <div class="meta">
+      <span>来源活动：HD-001「两周一链」第11期 · 数采专场（2026-11-06）</span>
+      <span>在线版 · 联系人已匿名（公司名保留原文），完整联系方式见内部 Excel 台账</span>
+      <span>2026-11-10</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="stats">
+    <div class="stat hl"><div class="num">25<small>条</small></div><div class="lbl">对接联系人记录</div></div>
+    <div class="stat hl"><div class="num">24<small>家</small></div><div class="lbl">覆盖企业 / 机构</div></div>
+    <a class="stat" href="#sec-1"><div class="num">2<small>家</small></div><div class="lbl">软硬件合作类</div></a>
+    <a class="stat" href="#sec-2"><div class="num">7<small>家</small></div><div class="lbl">场景渠道类</div></a>
+    <a class="stat" href="#sec-3"><div class="num">3<small>家</small></div><div class="lbl">投融资类</div></a>
+    <a class="stat" href="#sec-4"><div class="num">2<small>家</small></div><div class="lbl">客户类</div></a>
+    <a class="stat" href="#sec-5"><div class="num">10<small>家</small></div><div class="lbl">综合对接类</div></a>
+  </div>
+
+  <div class="nav">
+    <div class="nav-in">
+      <a href="#act">📋 活动记录</a>
+      <a href="#sec-1">软硬件合作 <b>2</b></a>
+      <a href="#sec-2">场景渠道 <b>8</b></a>
+      <a href="#sec-3">投融资 <b>3</b></a>
+      <a href="#sec-4">客户 <b>2</b></a>
+      <a href="#sec-5">综合对接 <b>10</b></a>
+      <span class="sp"></span>
+      <input class="search" id="q" type="search" placeholder="🔍 搜索公司 / 姓名 / 需求 / 建议…">
+    </div>
+  </div>
+
+  <div class="card" id="act">
+    <div class="sec-h" style="padding:16px 22px 0">
+      <div class="bar"></div><h2>活动记录</h2>
+      <span class="cnt">HD-001</span>
+    </div>
+    <div class="act-body">
+      <div class="full"><div class="k">会议全称</div><div class="v"><b>“两周一链”第11期大湾区机器人全产业链供需对接数据采集专场</b></div></div>
+      <div><div class="k">活动日期</div><div class="v">2026-11-06</div></div>
+      <div><div class="k">主办单位</div><div class="v">深圳市龙岗区人工智能（机器人）署</div></div>
+      <div><div class="k">企业受邀 / 实际到场</div><div class="v"><b class="big">54</b> 人受邀 / <b class="big">35</b> 人到场</div></div>
+      <div><div class="k">带队参会人</div><div class="v">人员10（内部同事）</div></div>
+      <div class="full"><div class="k">协办单位</div>
+        <div class="chips">
+          <span class="chip">深圳市龙岗区龙城街道办事处</span><span class="chip">深圳市人工智能产业协会</span>
+          <span class="chip">深圳市人工智能与机器人研究院</span><span class="chip">深圳市机器人协会</span>
+          <span class="chip">深圳市线上工业技术研究院</span><span class="chip">全球首家机器人6S店</span>
+          <span class="chip">深圳市龙岗区跨境电商行业协会</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="sections"></div>
+
+  <footer>
+    <span>数据来源：内部 Excel 台账（已脱敏：联系人匿名化、手机号打码）</span>
+    <span>内部资料 · 联系方式仅限业务对接使用</span>
+  </footer>
+</div>
+
+<script>
+const DATA = {
+  "软硬件合作类": [
+    ["聚触灵动","联系人01","CEO","","做触觉传感器，原生三维力、切向力检测","深圳聚触灵动技术有限公司，专注解耦切向力触觉感知，母公司AgileReach获数千万天使轮，产品用于具身智能、灵巧手","触觉传感器可与ego采集设备结合，探讨设备集成或联合方案","高"],
+    ["广州码匠软件（深圳办）","联系人02","深圳办负责人","","","码匠软件，做软件开发/定制，公开具身相关信息少","可能是软件集成或客户资源方，优先级一般","低"]
+  ],
+  "场景渠道类": [
+    ["深圳电信","联系人03","工业行业总监","189****2999","结合实训场研讨具身智能落地场景，希望多交流","深圳电信工业行业线，涉及制造企业数字化转型","实训场场景+具身数据采集结合点，可约详细谈","高"],
+    ["GAIE组委会","联系人04","","135****6767","明年第八届深圳国际人工智能展暨人工智能终端展，询问是否参加过","GAIE为深圳国际人工智能展组委会，展会聚焦AI终端、具身智能等","参展/曝光机会，评估是否参展或参与具身智能专区","中"],
+    ["深圳市人工智能产业协会/龙岗区未来产业协会","联系人05","常务副秘书长/秘书长","","为全国人工智能产业发展贡献力量","深圳市人工智能产业协会常务副秘书长，参与协会企业服务、政企对接等工作","协会资源对接、政策/活动/会员网络，长期维护","中高"],
+    ["未来清研科技","联系人06","市场运营总经理","","在具身领域做高质量数据及场景解决方案，班底为清华国际研究院+硅谷团队","未来清研（TSINGTEC）有自研头戴式EGO采集设备E²-CAP-V、UNIData百万小时级真实作业数据集，与清华深研院有联合研究","直接同行，也有互补可能（场景方案、数据产品化），可探讨竞合与行业标准","中高"],
+    ["Delta & Bay Founders Club","联系人07","创始人","","与美欧30+机器人创业者合作，帮对接中国供应商/合作伙伴（数据采集、软件、落地部署）；\n与旧金山Mission Robotics合作；寻找零部件厂商（深度相机、触觉手套、数据采集设备）、机械臂和人形机器人厂商","创始人剑桥毕业，做中美机器人生态对接","高价值渠道：ego采集设备正属其寻找品类，争取成为推荐供应商，对接海外采集需求","高"],
+    ["深圳蓝图商业规划有限公司","联系人08","","","专注企业出海、工业自动化AI+落地、标准赋能，可定制企业智能体集成和AI转型私有化部署","工商信息为商业信息咨询/管理咨询类公司，注册资本10万，参保人数0；自述以出海/AI落地为主","出海资源对接、AI转型咨询，生态合作方保持联系","低"],
+    ["深圳市游云龙科技","联系人09","总经理/法定代表人","186****1830","","政企信息化SaaS供应商，为政企客户提供定制化信息化解决方案；联系人09为复旦深圳校友会副秘书长，参与AI主题圈层活动","政企渠道资源+校友圈层，保持联系，了解是否有机器人/具身场景数据需求可对接","中低"],
+    ["深圳市人工智能产业协会/龙岗区未来产业协会","联系人10","会长特助/副会长","133****2806","负责出海业务、企业孵化及投资方向，欢迎合作交流","深圳市人工智能产业协会会长特助，参与协会国际合作、企业出海对接","多重价值：协会资源+出海+孵化投资，重点维护，可能引荐投资","高"]
+  ],
+  "投融资类": [
+    ["深圳雅宝中行","联系人11","支行负责人","137****8007","银行位于龙岗星河world机器人街区，配合龙岗区政府服务机器人/算力行业企业，希望提供金融服务","中国银行深圳雅宝支行，位于星河WORLD，经营范围含存贷款、结算等","融资、结算、政府配套金融服务，有资金需求时对接","中"],
+    ["深圳高新投","联系人12","","152****2023","主要看消费科技和具身智能","深圳高新投为深圳国资背景投资机构，关注硬科技/具身智能","投资类重点：有明确具身智能投资方向，可安排BP沟通或约见","高"],
+    ["深圳市美竟文化发展有限公司","联系人13","","186****4327","做融资的","公司名称含“文化发展”，对方自述做融资，可能是FA或相关服务","保持联系，了解其服务的资方是否关注具身/数据方向","中低"]
+  ],
+  "客户类": [
+    ["戴盟机器人","联系人14","","183****6338","询问“你们可以做定制化采集吗，偏商业和工业的UMI”","戴盟机器人做触觉传感器及触觉数据集（TacClaw-Infinity），有UMI夹爪数据采集体系，联合20+机构做外发采集","强需求信号：定制化采集（商业/工业UMI），优先跟进","高"],
+    ["深圳元境星衡科技","联系人15","法定代表人/董事","157****6146","咨询采集语料是否上线政府数采交易平台，后续需要购买语料做模型训练","2025年9月成立，经营范围含人工智能应用软件开发、大数据服务、数据处理和存储支持、智能机器人研发销售等","明确采购意向：语料购买+政府平台合规，尽快回复平台上线情况，了解采购量级","最高"]
+  ],
+  "综合对接类": [
+    ["潜行科技","联系人16","","","做具身数据采集、标注，成品数据集，\n供过字节、光轮、自变量、千寻、简智、觅蜂；自研设备N种，Ego/UMI/finger手套/6目；\n主力创维E6且在二开；结算稳定，日产3~5K，9月日均约2500~3500小时；有全职地推团队","未查到“潜行科技”公开工商信息；对方自述信息量大，属数据采集服务供应商","供应商来访（下周三）：评估产能、采集规范、质量标注、结算账期、地推覆盖、数据合规、合作模式","最高"],
+    ["捷邦精密","联系人17","","185****6688","","捷邦精密科技（301326），做精密功能件/结构件，苹果供应链，近年拓展VC均热板、液冷散热","制造业场景可能是ego采集落地场景（工厂/装配），了解产线数据采集需求","中"],
+    ["华鸿智数","联系人18","营销经理","","","未查到明确公开业务信息","需补充业务，判断是否为数据需求方或集成商","待确认"],
+    ["兔展智能","联系人19","销售总监","","","兔展智能公开定位为营销科技/AI内容类公司，未见与具身智能直接相关公开业务","需确认对具身数据是否有需求，或仅为泛AI交流","低"],
+    ["赛博云图科技","联系人20","法定代表人/董事","","","深圳赛博云图科技有限公司，2025年成立，公开业务信息有限","需补充业务方向，判断是否与具身数据相关","待确认"],
+    ["东莞市摘星人工智能应用软件有限公司","联系人21","业务部经理","","","未查到明确公开业务信息","需补充业务，从公司名看可能是AI应用/软件方向","待确认"],
+    ["人才很忙","联系人22","","","专注给机器人/智能制造企业解决招聘和用工合规问题","人才很忙（深圳）技术有限公司，经营范围含人力资源服务、劳务派遣，有招聘人形机器人相关岗位记录","用工/招聘合作，可了解能否解决地推团队人力合规问题","中"],
+    ["怡蔬云智能科技","联系人23","","","","未查到公开业务信息","需补充具体业务，判断是否为数据需求方或场景方","待确认"],
+    ["数字华夏机器人","联系人24","","137****5616","相识于龙岗区人机署组织的“两周一链”供需对接会","数字华夏（深圳）科技有限公司，做人形机器人（“夏澜”等），有交互服务机器人产品","人形机器人公司，可能是ego/训练数据需求方，了解其数据采集规划","中高"],
+    ["史河机器人","联系人25","华南大区总监","","","史河机器人做高空作业机器人、特种机器人；联系人25曾以史河机器人华南大区总监身份参与活动","工业/特种场景数据采集合作可能性，了解其场景是否有ego采集需求","中"]
+  ]
+};
+
+const PRI = {
+  "最高":"b-max","高":"b-high","中高":"b-mhigh","中":"b-mid",
+  "中低":"b-mlow","低":"b-low","待确认":"b-tbd"
+};
+const el = (t,c)=>{const e=document.createElement(t); if(c)e.className=c; return e;};
+const sections = el("div");
+let si = 0;
+for (const [cat, rows] of Object.entries(DATA)) {
+  si++;
+  const sec = el("div","sec"); sec.id = "sec-"+si;
+  const h = el("div","sec-h");
+  h.innerHTML = `<div class="bar"></div><h2>${cat}</h2><span class="cnt">${rows.length} 条</span><span class="src">来源：HD-001 · 两周一链数采专场</span>`;
+  sec.appendChild(h);
+  const wrap = el("div","tbl-wrap");
+  const table = el("table");
+  table.innerHTML = `<thead><tr>
+    <th>公司 / 机构</th><th>联系人</th><th>联系方式</th><th>已知需求或关注点</th>
+    <th>公司业务</th><th>合作方向或跟进建议</th><th>优先级</th></tr></thead>`;
+  const tb = el("tbody");
+  rows.forEach(r=>{
+    const [co,nm,ti,tel,need,biz,sug,pri]=r;
+    const tr = el("tr");
+    const tdCo = el("td","co"); tdCo.textContent = co;
+    const tdWho = el("td","who");
+    const nmDiv = el("div"); nmDiv.textContent = nm; tdWho.appendChild(nmDiv);
+    if(ti){const t=el("div","t");t.textContent=ti;tdWho.appendChild(t);}
+    const tdTel = el("td","tel");
+    if(tel){tdTel.textContent=tel;}
+    else{tdTel.innerHTML='<span class="dim">—</span>';}
+    const tdN = el("td","need"); tdN.textContent = need || "—"; if(!need) tdN.className="need dim";
+    const tdB = el("td","biz"); tdB.textContent = biz || "—"; if(!biz) tdB.className="biz dim";
+    const tdS = el("td","sug"); tdS.textContent = sug || "—";
+    const tdP = el("td","pri");
+    const b = el("span","badge "+(PRI[pri]||"b-mid")); b.textContent = pri;
+    tdP.appendChild(b);
+    tr.append(tdCo,tdWho,tdTel,tdN,tdB,tdS,tdP);
+    tb.appendChild(tr);
+  });
+  table.appendChild(tb);
+  wrap.appendChild(table);
+  const empty = el("div","empty"); empty.textContent = "没有匹配「"+cat+"」的记录";
+  wrap.appendChild(empty);
+  sec.appendChild(wrap);
+  sections.appendChild(sec);
+}
+document.getElementById("sections").appendChild(sections);
+
+/* search */
+document.getElementById("q").addEventListener("input", e=>{
+  const q = e.target.value.trim().toLowerCase();
+  document.querySelectorAll(".sec").forEach(sec=>{
+    let shown = 0;
+    sec.querySelectorAll("tbody tr").forEach(tr=>{
+      const hit = !q || tr.textContent.toLowerCase().includes(q);
+      tr.style.display = hit ? "" : "none";
+      if(hit) shown++;
+    });
+    sec.querySelector(".empty").style.display = shown ? "none" : "block";
+    const cnt = sec.querySelector(".cnt");
+    if(!cnt.dataset.orig) cnt.dataset.orig = cnt.textContent;
+    cnt.textContent = q ? `匹配 ${shown} / ${cnt.dataset.orig}` : cnt.dataset.orig;
+  });
+});
+</script>
+</body>
+</html>
